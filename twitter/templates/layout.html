@@ -45,6 +45,22 @@
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <a href="{% url 'tweet_list' %}" class='btn btn-primary mx-2'>Tweet Home</a>
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class='btn btn-danger'type="submit">LogOut</button>
+              </form>
+            {% else %}
+              <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <button class='btn btn-success'type="submit">Login</button>
+              </form>
+              <form class='mx-2' method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <button class='btn btn-success'type="submit">Register</button>
+              </form>
+            {% endif %}
           </div>
         </div>
       </nav>
